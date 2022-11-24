@@ -26,13 +26,28 @@ const eliminarFavorito = (id) => {
     localStorage.favoritos = JSON.stringify(local)
 }
 
-const agregarFavorito = (id) => {
+const agregarFavorito = (id, titulo, img) => {
     if (!localStorage.favoritos) {
         localStorage.favoritos = JSON.stringify([])
     }
     if (localStorage.favoritos) {
         const esta = JSON.parse(localStorage.favoritos).find(({ imdbID }) => imdbID === id);
         if (!esta) {
+            let pelicula = {
+                imdbID: id,
+                Title : titulo,
+                Poster: img,
+            }
+            if (!localStorage.favoritos) {
+                localStorage.favoritos = JSON.stringify([pelicula])
+            } else {
+                let local = JSON.parse(localStorage.getItem("favoritos"))
+                local.push(pelicula)
+                localStorage.favoritos = JSON.stringify(local)
+            }
+        }
+        
+        /* if (!esta) {
             fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
             .then(response => response.json())
             .then(data => {
@@ -50,7 +65,7 @@ const agregarFavorito = (id) => {
                     localStorage.favoritos = JSON.stringify(local)
                 }
             })
-        } 
+        }  */
     } else {
         console.log(`xd no hay nada`);
     }
@@ -162,10 +177,12 @@ const mostrarPeliculas = (peliculas) => {
             boton.innerHTML = `Agregar a favoritos`
             boton.className = `btn btn-danger btnFavorito`
             boton.dataset.id = item.imdbID
+            boton.dataset.titulo = item.Title
+            boton.dataset.img = item.Poster
             boton.addEventListener(`click`, (e) => {
                 notificacion()
                 e.preventDefault()
-                agregarFavorito(e.target.dataset.id)
+                agregarFavorito(e.target.dataset.id, e.target.dataset.titulo, e.target.dataset.img)
             })
 
             contenedorInfo.append(titulo, categoria, boton)
