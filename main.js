@@ -18,6 +18,7 @@ let btnEliminarLocal = document.getElementById(`eliminarLocal`)
 let btnAgregarFavorito = document.getElementsByClassName(`btnFavorito`)
 
 // FUNCIONES
+
 const eliminarFavorito = (id) => {
     local = JSON.parse(localStorage.favoritos)
     index = local.findIndex(item => item.imdbID === id)
@@ -211,5 +212,12 @@ btnEliminarLocal.addEventListener(`click`, () => {
     mostrarFavoritos()
 })
 
+window.addEventListener(`offline`, (e) => {
+    listaPeliculas.innerHTML = `No tienes conexion a internet`
+    listaFavoritos.innerHTML = `No tienes conexion a internet`
+})
 
-
+window.addEventListener(`online`, (e) => {
+    listaPeliculas.innerHTML = ``
+    listaFavoritos.innerHTML = ``
+})

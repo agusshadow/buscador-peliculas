@@ -4,8 +4,8 @@
     "display": "fullscreen",
     "scope": "/",
     "start_url": "/",
-    "name": "shadow movies",
-    "short_name": "movies",
+    "name": "netlix",
+    "short_name": "netlix",
     "icons": [
         {
             "src": "src/icons/icon-192x192.png",
