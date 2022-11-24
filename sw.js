@@ -18,11 +18,3 @@ workbox.routing.registerRoute(
         cacheName: CACHE_NAME
     })
 );
-
-window.addEventListener('offline', () => {
-    console.log(`esta offline`);
-}) 
-
-window.addEventListener('online', () => {
-    console.log(`esta online`);
-})
