@@ -1,7 +1,5 @@
-// APIKEY
 const apiKey = `cddd6530`;
 
-// OBTENGO LOS ELEMENTOS DEL DOM
 let inputBusqueda = document.getElementById(`busqueda`);
 let btnBuscar = document.getElementById(`btnBuscar`);
 
@@ -18,8 +16,6 @@ let vistaTrailers = document.getElementById(`vistaTrailers`);
 let btnEliminarLocal = document.getElementById(`eliminarLocal`)
 
 let btnAgregarFavorito = document.getElementsByClassName(`btnFavorito`)
-
-// FUNCIONES
 
 const eliminarFavorito = (id) => {
     local = JSON.parse(localStorage.favoritos)
@@ -73,7 +69,6 @@ const traerPeliculas = async (busqueda) => {
     span.className = `visually-hidden`
     div.appendChild(span)
     listaPeliculas.append(div)
-
     setTimeout(() => {
         listaPeliculas.innerHTML = ``
         fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${busqueda}&type=movie`)
@@ -81,9 +76,7 @@ const traerPeliculas = async (busqueda) => {
             .then(data => {
             mostrarPeliculas(data.Search);
     })
-   }, 1000)
-
-    
+   }, 1000) 
 }
 
 const mostrarFavoritos = () => {
@@ -96,19 +89,14 @@ const mostrarFavoritos = () => {
             let contenedorInfo = document.createElement(`div`)
             let titulo = document.createElement(`h3`)
             let boton = document.createElement(`a`)
-
             contenedor.className = `card m-2 text-center border-dark`
             contenedor.style = `width: 19rem;`
-
             imagen.src = item.Poster
             imagen.alt = item.Title
             imagen.className = `card-img-top`
-
             contenedorInfo.className = `card-body`
-
             titulo.innerHTML = item.Title
             titulo.className = `card-title h4 mb-4 text-white`
-
             boton.href = `#`
             boton.innerHTML = `Eliminar`
             boton.className = `btn btn-danger btnFavorito`
@@ -118,14 +106,12 @@ const mostrarFavoritos = () => {
                 eliminarFavorito(e.target.dataset.id)
                 mostrarFavoritos()
             })
-
             contenedorInfo.append(titulo, boton)
             if (item.Poster !== `N/A`) {
                 contenedor.append(imagen)
             }
             contenedor.append(contenedorInfo)
             listaFavoritos.append(contenedor)
-            
         })
     } else {
         listaPeliculas.innerHTML = `No se encontraron resultados`
@@ -145,19 +131,14 @@ const mostrarPeliculas = (peliculas) => {
 
             contenedor.className = `card m-2 text-center border-dark`
             contenedor.style = `width: 19rem;`
-
             imagen.src = item.Poster
             imagen.alt = item.Title
             imagen.className = `card-img-top`
-
             contenedorInfo.className = `card-body`
-
             titulo.innerHTML = item.Title
             titulo.className = `card-title h4 text-white`
-
             categoria.innerHTML = item.Year
             categoria.className = `card-text text-white`
-
             boton.href = `#`
             boton.innerHTML = `Agregar a favoritos`
             boton.className = `btn btn-danger btnFavorito`
@@ -169,7 +150,6 @@ const mostrarPeliculas = (peliculas) => {
                 e.preventDefault()
                 agregarFavorito(e.target.dataset.id, e.target.dataset.titulo, e.target.dataset.img)
             })
-
             contenedorInfo.append(titulo, categoria, boton)
             if (item.Poster !== `N/A`) {
                 contenedor.append(imagen)
@@ -200,7 +180,6 @@ const verTrailers = () => {
     vistaTrailers.className = ``
 }
 
-// LISTENERS
 btnVistaBuscador.addEventListener(`click`, (e) => {
     verBuscador()
 })
