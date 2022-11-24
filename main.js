@@ -13,6 +13,7 @@ let btnVistaFavoritos = document.getElementById(`btnFavoritos`);
 let vistaBuscador = document.getElementById(`vistaBuscador`);
 let vistaFavoritos = document.getElementById(`vistaFavoritos`);
 
+let btnEliminarLocal = document.getElementById(`eliminarLocal`)
 
 let btnAgregarFavorito = document.getElementsByClassName(`btnFavorito`)
 
@@ -55,13 +56,12 @@ const agregarFavorito = (id) => {
    
 }
 
-const notificacion = async () => {
+const notificacion = () => {
     document.body.append = `
     <div class="notificacion bg-success p-2 rounded-3">
           <p class="m-0 text-white">Agregada con exito</p>
     </div>
     `;
-    console.log(`click`);
     /* await setTimeout(() => {
          listaPeliculas.innerHTML = ``
     }, 2000) */
@@ -95,10 +95,9 @@ const mostrarFavoritos = () => {
             let imagen = document.createElement(`img`)
             let contenedorInfo = document.createElement(`div`)
             let titulo = document.createElement(`h3`)
-            let categoria = document.createElement(`p`)
             let boton = document.createElement(`a`)
 
-            contenedor.className = `card p-2 my-2 text-center`
+            contenedor.className = `card m-2 text-center border-dark`
             contenedor.style = `width: 19rem;`
 
             imagen.src = item.Poster
@@ -108,7 +107,7 @@ const mostrarFavoritos = () => {
             contenedorInfo.className = `card-body`
 
             titulo.innerHTML = item.Title
-            titulo.className = `card-title h4 mb-4`
+            titulo.className = `card-title h4 mb-4 text-white`
 
             boton.href = `#`
             boton.innerHTML = `Eliminar`
@@ -143,7 +142,7 @@ const mostrarPeliculas = (peliculas) => {
             let categoria = document.createElement(`p`)
             let boton = document.createElement(`a`)
 
-            contenedor.className = `card p-2 my-2 text-center`
+            contenedor.className = `card m-2 text-center border-dark`
             contenedor.style = `width: 19rem;`
 
             imagen.src = item.Poster
@@ -153,10 +152,10 @@ const mostrarPeliculas = (peliculas) => {
             contenedorInfo.className = `card-body`
 
             titulo.innerHTML = item.Title
-            titulo.className = `card-title h4`
+            titulo.className = `card-title h4 text-white`
 
             categoria.innerHTML = item.Year
-            categoria.className = `card-text`
+            categoria.className = `card-text text-white`
 
             boton.href = `#`
             boton.innerHTML = `Agregar a favoritos`
@@ -207,6 +206,10 @@ btnBuscar.addEventListener(`click`, (e) => {
     traerPeliculas(inputBusqueda.value);
 })
 
+btnEliminarLocal.addEventListener(`click`, () => {
+    localStorage.favoritos = JSON.stringify([])
+    mostrarFavoritos()
+})
 
 
 
