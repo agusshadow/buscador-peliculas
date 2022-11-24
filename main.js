@@ -10,8 +10,10 @@ let listaFavoritos = document.getElementById(`favoritos`);
 
 let btnVistaBuscador = document.getElementById(`buscador`);
 let btnVistaFavoritos = document.getElementById(`btnFavoritos`);
+let btnVistaTrailers = document.getElementById(`btnTrailers`);
 let vistaBuscador = document.getElementById(`vistaBuscador`);
 let vistaFavoritos = document.getElementById(`vistaFavoritos`);
+let vistaTrailers = document.getElementById(`vistaTrailers`);
 
 let btnEliminarLocal = document.getElementById(`eliminarLocal`)
 
@@ -46,52 +48,20 @@ const agregarFavorito = (id, titulo, img) => {
                 localStorage.favoritos = JSON.stringify(local)
             }
         }
-        
-        /* if (!esta) {
-            fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${id}`)
-            .then(response => response.json())
-            .then(data => {
-                let pelicula = {
-                    imdbID: id,
-                    Title : data.Title,
-                    Poster: data.Poster,
-                    Year: data.Year,
-                }
-                if (!localStorage.favoritos) {
-                    localStorage.favoritos = JSON.stringify([pelicula])
-                } else {
-                    let local = JSON.parse(localStorage.getItem("favoritos"))
-                    local.push(pelicula)
-                    localStorage.favoritos = JSON.stringify(local)
-                }
-            })
-        }  */
-    } else {
-        console.log(`xd no hay nada`);
     }
-   
 }
 
-const notificacion = () => {
-    document.body.append = `
-    <div class="notificacion bg-success p-2 rounded-3">
-          <p class="m-0 text-white">Agregada con exito</p>
-    </div>
-    `;
-    /* await setTimeout(() => {
-         listaPeliculas.innerHTML = ``
-    }, 2000) */
-}
-
-const animacionCarga = async () => {
-    listaPeliculas.innerHTML = `
-    <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
-    `;
+const notificacion = async () => {
+    let noti = document.createElement(`div`)
+    noti.className = `notificacion bg-success p-2 rounded-3`
+    let p = document.createElement(`p`)
+    p.className = `m-0 text-white bg-success`
+    p.innerHTML = `Agregada con exito`
+    noti.append(p)
+    document.body.append(noti)
     await setTimeout(() => {
-         listaPeliculas.innerHTML = ``
-    }, 2000)
+        document.body.removeChild(noti)
+    }, 1500)
 }
 
 const traerPeliculas = async (busqueda) => {
@@ -141,6 +111,7 @@ const mostrarFavoritos = () => {
             }
             contenedor.append(contenedorInfo)
             listaFavoritos.append(contenedor)
+            
         })
     } else {
         listaPeliculas.innerHTML = `No se encontraron resultados`
@@ -200,11 +171,19 @@ const mostrarPeliculas = (peliculas) => {
 const verBuscador = () => {
     vistaFavoritos.className = `d-none`
     vistaBuscador.className = ``
+    vistaTrailers.className = `d-none`
 }
 
 const verFavoritos = () => {
     vistaFavoritos.className = ``
     vistaBuscador.className = `d-none`
+    vistaTrailers.className = `d-none`
+}
+
+const verTrailers = () => {
+    vistaFavoritos.className = `d-none`
+    vistaBuscador.className = `d-none`
+    vistaTrailers.className = ``
 }
 
 // LISTENERS
@@ -217,9 +196,14 @@ btnVistaFavoritos.addEventListener(`click`, (e) => {
     mostrarFavoritos()
 })
 
+btnVistaTrailers.addEventListener(`click`, (e) => {
+    verTrailers()
+})
+
 btnBuscar.addEventListener(`click`, (e) => {
     vistaFavoritos.className = `d-none`
     vistaBuscador.className = ``
+    vistaTrailers.className = `d-none`
     e.preventDefault();
     traerPeliculas(inputBusqueda.value);
 })
