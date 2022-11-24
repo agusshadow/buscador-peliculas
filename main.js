@@ -65,11 +65,25 @@ const notificacion = async () => {
 }
 
 const traerPeliculas = async (busqueda) => {
-    await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${busqueda}&type=movie`)
-    .then(response => response.json())
-    .then(data => {
-        mostrarPeliculas(data.Search);
+    listaPeliculas.innerHTML = ``
+    let div = document.createElement(`div`)
+    div.className = `spinner-border text-light`
+    let span = document.createElement(`span`)
+    span.innerHTML = `cargando...`
+    span.className = `visually-hidden`
+    div.appendChild(span)
+    listaPeliculas.append(div)
+
+    setTimeout(() => {
+        listaPeliculas.innerHTML = ``
+        fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${busqueda}&type=movie`)
+            .then(response => response.json())
+            .then(data => {
+            mostrarPeliculas(data.Search);
     })
+   }, 1000)
+
+    
 }
 
 const mostrarFavoritos = () => {
