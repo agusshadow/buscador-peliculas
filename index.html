@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Document</title>
+</head>
+<body>
+
+        <header>
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container">
+                  <a class="navbar-brand" href="#">ShadowMovies</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#" id="buscador">Buscador</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#" id="btnFavoritos">Favoritos</a>
+                      </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="busqueda">
+                      <button class="btn btn-outline-success" type="submit" id="btnBuscar">Search</button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+        </header>
+
+        <!-- <div class="notificacion bg-success p-2 rounded-3">
+          <p class="m-0 text-white">Agregada con exito</p>
+        </div> -->
+
+        <div id="vistaBuscador">
+
+          <div class="position-relative">
+            <img src="src/portada.png" alt="" class="img-fluid portada">
+            <!-- <h2 class="titulo-banner">Busca dentro de nuestro listado de peliculas, series y mas!</h2> -->
+          </div>
+        
+            <main class="container">
+
+              
+            
+                <section>
+                    <!-- <h2 class="text-primary text-center my-5">Peliculas</h2> -->
+                    <div class="d-flex flex-wrap justify-content-evenly py-4" id="peliculas"></div>
+                </section>
+            
+            </main>
+        </div>
+
+        <div id="vistaFavoritos" class="d-none">
+            <main class="container">
+                
+              <section>
+                <h2 class="text-primary text-center my-5">Favoritos</h2>
+                  <div class="d-flex flex-wrap justify-content-evenly py-4" id="favoritos"></div>
+              </section>
+          
+          </main>
+        </div>
+
+    
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="registersw.js"></script>
+    
+</body>
+</html>
