@@ -128,7 +128,6 @@ const mostrarPeliculas = (peliculas) => {
             let titulo = document.createElement(`h3`)
             let categoria = document.createElement(`p`)
             let boton = document.createElement(`a`)
-
             contenedor.className = `card m-2 text-center border-dark`
             contenedor.style = `width: 19rem;`
             imagen.src = item.Poster
