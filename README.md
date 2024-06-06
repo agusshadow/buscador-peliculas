@@ -1,6 +1,2 @@
-Datos sobre el alumno
-
-Nombre completo: Agustin Gonzalez <br>
-Comision: DWN3AV
-
-
+Web desplegada en Vercel:
+https://buscadorpeliculas.vercel.app/
